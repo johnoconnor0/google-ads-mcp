@@ -1,73 +1,57 @@
-# Credentials and secrets
-.env
-.env.local
-config.yaml
-google_ads.yaml
-*_credentials.txt
-*_credentials.json
-service-account-key.json
-*.pem
-
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
+
+# Distribution / packaging
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
-*.egg
+.eggs/
 
 # Virtual environments
+.venv/
 venv/
-ENV/
 env/
-.venv
 
-# IDE
+# Testing and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+config.yaml
+credentials.json
+*.pem
+*.key
+*.crt
+
+# Logs and debug artifacts
+*.log
+debug_ops.log
+
+# Local editor / IDE
 .vscode/
 .idea/
+
+# Claude local settings
+.claude/settings.local.json
+
+# Backup and temporary files
+*.bak
+*.tmp
 *.swp
-*.swo
-*~
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Local AI assistant project metadata
 .claude/
 
-# Logs
-*.log
-logs/
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-
-# Cache
-*.cache
-.cache/
-
-# Temporary files
-*.tmp
-*.temp
-tmp/
-temp/
-
-# Redis dumps
-dump.rdb
-
-# Other
-documentation/
-google-mcp.wiki

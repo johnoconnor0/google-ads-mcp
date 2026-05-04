@@ -261,3 +261,21 @@ For security-related questions or concerns:
 ---
 
 **Last Updated**: December 17, 2025
+
+
+## Security Response SLA
+
+- Initial triage acknowledgement: within 3 business days.
+- Status update after validation: within 7 business days.
+- Remediation target for confirmed critical vulnerabilities: as soon as practicable, with an initial mitigation plan within 14 days.
+
+
+<!-- VIRUSTOTAL-AUDIT:START -->
+## VirusTotal Audit
+
+Last updated: not yet run in CI.
+
+This section is maintained automatically by .github/workflows/virustotal-audit.yml.
+
+<!-- VIRUSTOTAL-AUDIT:END -->
+

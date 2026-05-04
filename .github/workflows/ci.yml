@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    env:
+      QUALITY_PATHS: "tests scripts generate_refresh_token.py"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Ruff
+        run: ruff check $QUALITY_PATHS
+
+      - name: Black check
+        run: black --check $QUALITY_PATHS
+
+      - name: Flake8
+        run: flake8 --jobs=1 --max-line-length=120 $QUALITY_PATHS
+
+      - name: MyPy
+        run: mypy --explicit-package-bases tests
+
+      - name: Tests
+        run: pytest

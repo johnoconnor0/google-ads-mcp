@@ -1,0 +1,49 @@
+name: VirusTotal Audit
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/virustotal-audit.mjs'
+      - '.github/workflows/virustotal-audit.yml'
+      - 'requirements.txt'
+      - 'pyproject.toml'
+      - '!SECURITY.md'
+      - '!.virustotal/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: virustotal-audit
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run VirusTotal audit
+        env:
+          VT_API_KEY: ${{ secrets.VIRUS_TOTAL_API_KEY }}
+        run: node scripts/virustotal-audit.mjs
+
+      - name: Commit updated report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add SECURITY.md .virustotal/
+          if git diff --cached --quiet; then
+            echo "No VirusTotal report changes."
+            exit 0
+          fi
+          git commit -m "chore(security): refresh VirusTotal audit [skip ci]"
+          git push

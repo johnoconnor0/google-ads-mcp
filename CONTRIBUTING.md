@@ -41,7 +41,7 @@ Found a bug? Help us fix it!
 
 Have an idea for a new feature?
 
-- **Check the roadmap**: See [IMPLEMENTATION_PLAN.md](documentation/IMPLEMENTATION_PLAN.md)
+- **Check the roadmap**: See [documentation/EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md)
 - **Search existing issues**: Your feature might already be planned
 - **Create an issue**: Describe the use case and expected behavior
 - **Discuss first**: For major features, open a discussion before implementation
@@ -89,9 +89,9 @@ Help us improve quality!
 
 ### Development Environment Setup
 
-1. **Python version**: Python 3.8 or higher
+1. **Python version**: Python 3.10 or higher
    ```bash
-   python --version  # Should be 3.8+
+   python --version  # Should be 3.10+
    ```
 
 2. **Create virtual environment**:
@@ -475,7 +475,7 @@ Reviewers will evaluate:
 
 ## Roadmap Alignment
 
-The project follows a phased development roadmap. See [IMPLEMENTATION_PLAN.md](documentation/IMPLEMENTATION_PLAN.md) for details.
+The project follows a phased development roadmap. See [documentation/EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md) for details.
 
 ### Priority System
 
@@ -540,3 +540,18 @@ Your contributions help make Google Ads management more accessible and efficient
 ---
 
 **Last Updated**: December 17, 2025
+
+## Quick Verify (Cross-Platform)
+
+Run these checks before opening a pull request:
+
+```bash
+python -m pip install --upgrade pip
+pip install -e .[dev]
+ruff check tests scripts generate_refresh_token.py`nblack --check tests scripts generate_refresh_token.py`nflake8 --max-line-length=120 tests scripts generate_refresh_token.py`nmypy --explicit-package-bases tests
+pytest
+```
+
+Windows note: if `python` is not available, install Python 3.10+ from python.org and reopen the terminal so `python` is on PATH.
+
+

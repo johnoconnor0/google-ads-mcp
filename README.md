@@ -1,10 +1,12 @@
 # Google Ads MCP Server
 
-![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![MCP SDK](https://img.shields.io/badge/MCP-1.1.0%2B-purple)
 ![Google Ads API](https://img.shields.io/badge/Google%20Ads%20API-v17%2B-red)
-![Status](https://img.shields.io/badge/status-Active%20Development-orange)
+[![CI](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/ci.yml)
+[![Release Check](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/release-check.yml/badge.svg)](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/release-check.yml)
+[![Secret Scan](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/johnoconnor0/google-ads-mcp/actions/workflows/secret-scan.yml)
 
 A comprehensive Model Context Protocol (MCP) server for Google Ads API integration, enabling AI assistants like Claude, ChatGPT, and Gemini to analyze, manage, and optimize Google Ads campaigns through natural language conversations.
 
@@ -14,7 +16,7 @@ A comprehensive Model Context Protocol (MCP) server for Google Ads API integrati
 - [Features](#features)
   - [Current Features (v1)](#current-features-v1)
   - [Roadmap (v2)](#roadmap-v2)
-- [Quick Start](#quick-start)
+- [Quick Verify](#quick-verify)
 - [Setup & Installation](#setup--installation)
   - [Prerequisites](#prerequisites)
   - [Google Ads API Setup](#google-ads-api-setup)
@@ -95,7 +97,7 @@ The v2 roadmap expands the server to 161 tools across 14 functional domains, cov
 
 **Total: 161 tools** covering end-to-end campaign lifecycle management.
 
-See [IMPLEMENTATION_PLAN.md](documentation/IMPLEMENTATION_PLAN.md) for the complete roadmap.
+See [documentation/EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md) and [documentation/COMPLETE_TOOLS_DOCUMENTATION.md](documentation/COMPLETE_TOOLS_DOCUMENTATION.md) for the roadmap and detailed tool coverage.
 
 ## Quick Start
 
@@ -103,7 +105,7 @@ Get up and running in 5 minutes:
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - Google Ads account with active campaigns
 - Google Ads API Developer Token ([apply here](https://developers.google.com/google-ads/api/docs/get-started/dev-token))
 
@@ -156,6 +158,17 @@ Once configured, try these commands in Claude Desktop:
 
 See [Usage Examples](#usage-examples) for more.
 
+## Quick Verify
+
+Use this sequence to validate a clean clone before publishing or opening a PR:
+
+```bash
+python -m pip install --upgrade pip
+pip install -e .[dev]
+ruff check tests scripts generate_refresh_token.py`nblack --check tests scripts generate_refresh_token.py`nflake8 --max-line-length=120 tests scripts generate_refresh_token.py`nmypy --explicit-package-bases tests
+pytest
+python -m build
+```
 ## Setup & Installation
 
 ### Prerequisites
@@ -164,7 +177,7 @@ See [Usage Examples](#usage-examples) for more.
 
 - **Python**: Version 3.8 or higher
   ```bash
-  python --version  # Should output 3.8 or higher
+  python --version  # Should output 3.10 or higher
   ```
 
 - **Google Ads Account**: Active account with campaigns
@@ -406,7 +419,7 @@ Initialize with:
 - Developer Token: abc123...
 - Client ID: 123456789.apps.googleusercontent.com
 - Client Secret: xyz789...
-- Refresh Token: 1//abc...
+- Refresh Token: YOUR_REFRESH_TOKEN
 - Login Customer ID: 1234567890 (only for MCC accounts)
 ```
 
@@ -920,7 +933,7 @@ The v2 implementation expands the server to 161 tools across 14 domains. Below i
 
 ---
 
-For the complete implementation plan with technical details, see [IMPLEMENTATION_PLAN.md](documentation/IMPLEMENTATION_PLAN.md).
+For the complete implementation plan with technical details, see [documentation/EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md).
 
 ## Usage Examples
 
@@ -1209,7 +1222,7 @@ google-mcp/
 ├── CODEOWNERS                     # Code ownership
 ├── documentation/                 # Additional documentation
 │   ├── QUICKSTART.md
-│   ├── IMPLEMENTATION_PLAN.md
+│   ├── EXECUTIVE_SUMMARY.md
 │   ├── EXECUTIVE_SUMMARY.md
 │   └── ...
 │
@@ -1578,7 +1591,7 @@ See [CITATION.cff](CITATION.cff) for machine-readable citation metadata.
 ### Documentation
 
 - **Quick Start**: [QUICKSTART.md](documentation/QUICKSTART.md)
-- **Implementation Plan**: [IMPLEMENTATION_PLAN.md](documentation/IMPLEMENTATION_PLAN.md)
+- **Implementation Plan**: [documentation/EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md)
 - **Executive Summary**: [EXECUTIVE_SUMMARY.md](documentation/EXECUTIVE_SUMMARY.md)
 - **Claude Instructions**: [.claude/CLAUDE.md](.claude/CLAUDE.md)
 
@@ -1615,3 +1628,10 @@ See [CITATION.cff](CITATION.cff) for machine-readable citation metadata.
 **License**: MIT
 
 **Star this repository** if you find it useful!
+
+
+
+
+
+
+
