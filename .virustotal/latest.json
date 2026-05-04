@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-05-04T03:54:15.455Z",
+  "scannedFiles": 8,
+  "results": [
+    {
+      "file": "google_ads_mcp.py",
+      "found": false,
+      "sha256": "972c4d649845a849a66fe42a31de9a3d8b614230b3438df03e7d14d769bd7961"
+    },
+    {
+      "file": "requirements.txt",
+      "found": false,
+      "sha256": "24c0308c461410ea39a52a386ff5d6c7349ed457868f3dca41e51b4cd95f3f25"
+    },
+    {
+      "file": "pyproject.toml",
+      "found": false,
+      "sha256": "37a2810ca7c73db197b1e3c5f773b248906ce0670dbce3052e4fab3cbcacfadd"
+    },
+    {
+      "file": "README.md",
+      "found": false,
+      "sha256": "c0ec7cdc3dd83fab42d3061900584e3f34255581149696740c77540f86bdd83d"
+    },
+    {
+      "file": "SECURITY.md",
+      "found": false,
+      "sha256": "33b85353157600a1cbb99314f5ddc5c715d0f67a9c6a936741c8c701bce2a133"
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "found": false,
+      "sha256": "7e3952f3b263406bd66176a5a1df2299e332edafd3c02d54009568a4af05aa62"
+    },
+    {
+      "file": ".github/workflows/secret-scan.yml",
+      "found": false,
+      "sha256": "81ca73fbfc638997d69d914a6f9a6cfbba811763b0623c2899d80d555c3ad58d"
+    },
+    {
+      "file": ".github/workflows/release-check.yml",
+      "found": false,
+      "sha256": "a1f9bd662da69b04a211871854b99f37b94972351f25e07c8749861c725856f4"
+    }
+  ]
+}
