@@ -20,7 +20,7 @@ We take the security of the Google Ads MCP Server seriously. If you discover a s
 
 1. Go to the [Issues page](https://github.com/johnoconnor0/google-ads-mcp/issues)
 2. Click "New Issue"
-3. **For sensitive security issues**: Email open-source@weblifter.com.au first, or use GitHub's private vulnerability reporting if available
+3. **For sensitive security issues**: Email john@anthril.com first, or use GitHub's private vulnerability reporting if available
 4. **For non-sensitive issues**: Create a public issue with the "security" label
 
 **What to Include**

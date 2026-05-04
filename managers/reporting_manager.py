@@ -13,7 +13,9 @@ Report Types:
 - Comparative analysis (period-over-period, YoY)
 """
 
-from typing import Dict, Any, List, Optional
+import os
+from typing import Dict, Any, List, Optional, Set
+from urllib.parse import urlparse
 from google.ads.googleads.client import GoogleAdsClient
 from datetime import datetime, timedelta
 
@@ -28,6 +30,40 @@ class ReportingManager:
             client: Authenticated GoogleAdsClient instance
         """
         self.client = client
+        self._owned_domains = self._load_owned_domains()
+
+    def _load_owned_domains(self) -> Set[str]:
+        """Load configured first-party domains used to identify own auction insight rows.
+
+        Expected env var format:
+            GOOGLE_ADS_OWNED_DOMAINS=example.com,www.example.com
+        """
+        raw = os.getenv("GOOGLE_ADS_OWNED_DOMAINS", "")
+        return {
+            domain.strip().lower().lstrip(".")
+            for domain in raw.split(",")
+            if domain.strip()
+        }
+
+    @staticmethod
+    def _normalize_host(raw_domain: str) -> str:
+        """Normalize a potentially untrusted domain/URL to a lowercase hostname."""
+        value = (raw_domain or "").strip().lower()
+        if not value:
+            return ""
+
+        # Auction insight domains are usually hosts, but parse as URL defensively.
+        parsed = urlparse(value if "://" in value else f"https://{value}")
+        host = parsed.hostname or ""
+        return host.strip().lstrip(".")
+
+    def _is_owned_domain(self, raw_domain: str) -> bool:
+        """Return True if domain exactly matches a configured owned domain."""
+        host = self._normalize_host(raw_domain)
+        if not host or not self._owned_domains:
+            return False
+
+        return host in self._owned_domains
 
     def get_account_performance(
         self,
@@ -1792,7 +1828,7 @@ class ReportingManager:
                     'outranking_share': row.metrics.outranking_share
                 }
 
-                if 'yourdomain.com' in domain.lower():  # Placeholder - would need actual domain detection
+                if self._is_owned_domain(domain):
                     your_impression_share = row.metrics.impression_share
                 else:
                     competitors.append(competitor_data)
