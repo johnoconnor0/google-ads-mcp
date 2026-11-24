@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T23:08:18.106Z",
+  "generatedAt": "2026-11-24T01:25:28.792Z",
   "scannedFiles": 8,
   "results": [
     {
@@ -25,7 +25,7 @@
     {
       "file": "SECURITY.md",
       "found": false,
-      "sha256": "65183c1205fcbe0c5be5b8da712d29051a1fdea2753a72a88d99f35e3f62a076"
+      "sha256": "b5562d4bbf39e0d3c624d3af85791d25d6dc6e0323826cbecf31754f75001ee5"
     },
     {
       "file": ".github/workflows/ci.yml",
